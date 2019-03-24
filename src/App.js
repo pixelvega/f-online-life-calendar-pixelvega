@@ -21,11 +21,12 @@ class App extends Component {
     this.discardData = this.discardData.bind(this);
     this.saveDay = this.saveDay.bind(this);
     this.resetForm = this.resetForm.bind(this);
+    this.checkRepeatedDate = this.checkRepeatedDate.bind(this);
+    this.checkSelectedState = this.checkSelectedState.bind(this);
   }
 
   handleDate(e) {
     const date = e.currentTarget.value;
-
     this.setState({
       dateSelected: date
     });
@@ -67,12 +68,13 @@ class App extends Component {
       message: messageInserted,
       date: dateSelected
     }
-
-    this.setState(prevState => ({
-      savedStates: [...prevState.savedStates, newState]
-    }));
-
-    return savedStates;
+    if (!this.checkRepeatedDate() && !this.checkSelectedState() ){
+      this.setState(prevState => ({
+        savedStates: [...prevState.savedStates, newState]
+      }));
+    } else {
+      alert('This date is already saved. Pick another date, please.')
+    }
   }
 
   resetForm() {
@@ -82,6 +84,24 @@ class App extends Component {
       stateSelected: '',
       messageInserted: ''
     })
+  }
+
+  checkRepeatedDate() {
+    const {savedStates} = this.state;
+
+    for (const date of savedStates) {
+      if(this.state.dateSelected === date.date) {
+        return true;
+      }
+    }
+  }
+
+  checkSelectedState() {
+    const {stateSelected} = this.state;
+
+    if(stateSelected === '') {
+      return true;
+    }
   }
 
   render() {
