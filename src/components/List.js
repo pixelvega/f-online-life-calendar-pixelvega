@@ -1,29 +1,36 @@
 import React, {Component} from 'react';
+import Header from './Header';
 
 class List extends Component {
   render() {
-    const {savedStates} = this.props;
+    const {savedStates, resetForm} = this.props;
     if(savedStates.length>0) {
       return(
-        <ul className="List">
-          {
-            savedStates.map((item, index) => {
-              return (
-              <li key={index}>
-                <div>{item.state}</div>
-                <div>{item.message}</div>
-                <div>{item.date}</div>
-              </li>
-              )
-            })
-          }
-        </ul>
+        <>
+          <Header resetForm={resetForm} />
+          <ul className="List">
+            {
+              savedStates.map((item, index) => {
+                return (
+                <li key={index}>
+                  <div>{item.state}</div>
+                  <div>{item.message}</div>
+                  <div>{item.date}</div>
+                </li>
+                )
+              })
+            }
+          </ul>
+        </>
       );
     } else {
       return(
-      <div className="List">
-        No hay datos guardados
-      </div>
+        <>
+          <Header />
+          <div className="List">
+            No hay datos guardados
+          </div>
+        </>
       );
     }
   }

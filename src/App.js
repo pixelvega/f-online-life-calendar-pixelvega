@@ -4,25 +4,28 @@ import {Switch, Route} from 'react-router-dom';
 import Edit from './components/Edit';
 import List from './components/List';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       dateSelected: new Date().toISOString().slice(0, 10),
       stateSelected: '',
       messageInserted: '',
       savedStates: []
     };
+
     this.handleDate = this.handleDate.bind(this);
     this.handleState = this.handleState.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
     this.discardData = this.discardData.bind(this);
     this.saveDay = this.saveDay.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
   handleDate(e) {
     const date = e.currentTarget.value;
-    console.log('date: ', date);
+
     this.setState({
       dateSelected: date
     });
@@ -30,43 +33,69 @@ class App extends Component {
 
   handleState(e) {
     const state = e.currentTarget.value;
-    console.log('state: ', state);
+
     this.setState({
       stateSelected: state
     });
   }
 
+  handleMessage(e) {
+    let message = e.currentTarget.value;
+
+    this.setState({
+      messageInserted: message
+    });
+  }
+
   discardData() {
+
     this.setState({
       dateSelected: new Date().toISOString().slice(0, 10),
       stateSelected: ''
-
     });
   }
 
   saveDay() {
-    const {stateSelected, messageInserted, dateSelected, savedStates} = this.state;
+    let {stateSelected, messageInserted, dateSelected, savedStates} = this.state;
+
+    if (stateSelected==="unhappy") {
+      messageInserted = "";
+    }
+
     const newState = {
       state: stateSelected,
       message: messageInserted,
       date: dateSelected
     }
+
     this.setState(prevState => ({
       savedStates: [...prevState.savedStates, newState]
     }));
+
     return savedStates;
+  }
+
+  resetForm() {
+
+    this.setState({
+      dateSelected: new Date().toISOString().slice(0, 10),
+      stateSelected: '',
+      messageInserted: ''
+    })
   }
 
   render() {
     const {stateSelected, dateSelected, savedStates} = this.state;
+
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" render={()=>
-            <Edit handleDate={this.handleDate} handleState={this.handleState} stateSelected={stateSelected} dateSelected={dateSelected} discardData={this.discardData} saveDay={this.saveDay} />
+          <Route path="/Edit/" render={()=>
+            <Edit handleDate={this.handleDate} handleState={this.handleState} handleMessage={this.handleMessage} stateSelected={stateSelected} dateSelected={dateSelected} discardData={this.discardData} saveDay={this.saveDay} />
           }/>
-          <Route path="/List/" render={()=>
-            <List savedStates={savedStates} />
+
+          <Route exact path="/" render={()=>
+            <List savedStates={savedStates} resetForm={this.resetForm} />
           }/>
         </Switch>
       </div>
