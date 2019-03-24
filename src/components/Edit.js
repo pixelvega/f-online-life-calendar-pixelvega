@@ -6,7 +6,7 @@ class Edit extends Component {
     const {handleDate, handleState, stateSelected, discardData, dateSelected, saveDay, handleMessage} = this.props;
 
     return (
-      <>
+      <div className="main">
         <form className="edit-form">
           <div className="date-group">
             <label className="label-date">
@@ -39,7 +39,7 @@ class Edit extends Component {
             </div>
           </div>
         </form>
-      </>
+      </div>
     );
   }
 }
