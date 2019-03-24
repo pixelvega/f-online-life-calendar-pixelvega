@@ -3,7 +3,7 @@ import Header from './Header';
 
 class List extends Component {
   render() {
-    const {savedStates, resetForm} = this.props;
+    const {savedStates, resetForm, showMessage} = this.props;
     if(savedStates.length>0) {
       return(
         <div className="main">
@@ -12,17 +12,15 @@ class List extends Component {
             {
               savedStates.map((item, index) => {
                 return (
-                  <>
-                <li className="days-list-item" key={index} >
+                <li className="days-list-item" key={index} onClick={() => alert(`El ${item.date} has sido feliz porque: ${item.message}`)}>
                   <div><i className={`icon ${item.state} fas ${item.state==="happy"?"fa-laugh-beam":"fa-frown"}`}></i></div>
                   <div>{item.date}</div>
                 </li>
-                  <div className="saved-message modal">{item.message}</div>
-                </>
                 )
               })
             }
           </ul>
+         
         </div>
       );
     } else {

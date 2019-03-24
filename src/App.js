@@ -63,14 +63,15 @@ class App extends Component {
       messageInserted = "";
     }
 
-    const newState = {
+    const newDay = {
       state: stateSelected,
       message: messageInserted,
       date: dateSelected
     }
-    if (!this.checkRepeatedDate() && !this.checkSelectedState() ){
+    if (!this.checkRepeatedDate() && !this.checkSelectedState() && !(dateSelected === "")){
+      console.log('date-selectec',dateSelected);
       this.setState(prevState => ({
-        savedStates: [...prevState.savedStates, newState]
+        savedStates: [...prevState.savedStates, newDay]
       }));
     } else {
       alert(`You can't reapeat the date and choose one state, please.`);
@@ -91,6 +92,7 @@ class App extends Component {
 
     for (const date of savedStates) {
       if(this.state.dateSelected === date.date) {
+        console.log(this.state.dateSelected);
         return true;
       }
     }
