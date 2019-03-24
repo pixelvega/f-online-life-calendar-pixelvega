@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Delius');
+
+.App {
+  font-family: 'Delius', cursive;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+/*Edit Component*/
+.title {
+  margin-bottom: 10px;
+}
+#date {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px 10px;
+  box-sizing: border-box;
+}
+.edit-form {
+  width: 320px;
+}
+.option-genre {
+  display: flex;
+  align-items: center;
+}
+.state-group-inputs {
+  display: flex;
+}
+.option-genre-label, .option-genre-input {
+  margin: 0px;
+  padding: 0px 10px;
+}
+.label-message {
+  
+}
+.message {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px 10px;
+  margin-top: 10px; 
+  box-sizing: border-box;
+}
+.hidden {
+  display: none;
+}
+.btn-group {
+  margin-top: 30px;
+
+}
+.link {
+  text-decoration: none;
+}
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.edit_btn {
+  font-size: 18px;
+  width: 100%;
+  padding: 10px 6px;
+  outline: none;
+  &:hover {
+    background-color: #cccccc;
+  }
+}
+.save {
+  text-transform: uppercase;
+  background-color: rgb(0, 162, 255);
+  border: none;
+}
+.discard {
+  background-color: white;
+  border: none;
+}

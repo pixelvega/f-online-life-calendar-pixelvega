@@ -7,32 +7,36 @@ class Edit extends Component {
 
     return (
       <>
-        <form className="Form">
+        <form className="edit-form">
           <div className="date-group">
-            <label>
-              <h2>Fecha:</h2>
+            <label className="label-date">
+              <h2 className="title">Fecha:</h2>
               <input id="date" type="date" onChange={handleDate} value={dateSelected}></input>
             </label>
           </div>
           <div className="state-group">
-            <h2>Estado:</h2>
-            <label  htmlFor="edit" className="option-genre">
-              <input className="option-happy" id="happy" type="radio" value="happy" name="state" onChange={handleState} checked={stateSelected==="happy"?true:false} />
-              <p className="option-happy-label">:)</p>
+            <h2 className="title">Estado:</h2>
+            <div className="state-group-inputs">
+              <label  htmlFor="edit-form" className="option-genre">
+                <input className="option-genre-input" id="happy" type="radio" value="happy" name="state" onChange={handleState} checked={stateSelected==="happy"?true:false} />
+                <p className="option-genre-label">: )</p>
+              </label>
+              <label  htmlFor="edit-form" className="option-genre">
+                <input className="option-genre-input" id="unhappy" type="radio" value="unhappy" name="state" onChange={handleState} checked={stateSelected==="unhappy"?true:false} />
+                <p className="option-genre-label">: (</p>
+              </label>
+            </div>
+            <label htmlFor="edit-form" className="label-message">
+                <input type="text" className={stateSelected==="unhappy" || stateSelected==="" ? "message hidden" : "message"} onKeyUp={handleMessage} disabled={stateSelected==="unhappy"||stateSelected===""?true:false} placeholder="Qué guay! ¿Por qué ha sido un buen día?" />
             </label>
-            <label  htmlFor="edit" className="option-genre">
-              <input className="option-unhappy" id="unhappy" type="radio" value="unhappy" name="state" onChange={handleState} checked={stateSelected==="unhappy"?true:false} />
-              <p className="option-unhappy-label">:(</p>
-            </label>
-            <label htmlFor="edit">
-                <input type="text" onKeyUp={handleMessage} disabled={stateSelected==="unhappy"||stateSelected===""?true:false}/>
-            </label>
-            <label htmlFor="edit">
-            <Link to="/"><input type="button" className="edit_btn save" value="Guardar" onClick={saveDay} /></Link>
-            </label>
-            <label htmlFor="edit">
-              <input type="button" className="edit_btn discard" value="Descartar" onClick={discardData} />
-            </label>
+            <div className="btn-group">
+              <label htmlFor="edit-form">
+              <Link to="/" className="link"><input type="button" className="edit_btn save" value="Guardar" onClick={saveDay} /></Link>
+              </label>
+              <label htmlFor="edit-form">
+                <input type="button" className="edit_btn discard" value="Descartar" onClick={discardData} />
+              </label>
+            </div>
           </div>
         </form>
       </>
