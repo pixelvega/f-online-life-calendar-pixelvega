@@ -1,5 +1,5 @@
 import React,  {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Route , withRouter} from 'react-router-dom';
 
 class Edit extends Component {
   render() {
@@ -31,7 +31,7 @@ class Edit extends Component {
             </label>
             <div className="btn-group">
               <label htmlFor="edit-form">
-              <Link to="/" className="link"><input type="button" className="edit_btn save" value="Guardar" onClick={saveDay} /></Link>
+              <input type="button" className="edit_btn save" value="Guardar" onClick={saveDay} />
               </label>
               <label htmlFor="edit-form">
                 <input type="button" className="edit_btn discard" value="Descartar" onClick={discardData} />
@@ -44,4 +44,4 @@ class Edit extends Component {
   }
 }
 
-export default Edit;
+export default withRouter(Edit);

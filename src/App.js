@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './App.scss';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, withRouter} from 'react-router-dom';
 import Edit from './components/Edit';
 import List from './components/List';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    const { match, location, history } = this.props;
 
     this.state = {
       dateSelected: new Date().toISOString().slice(0, 10),
@@ -68,11 +69,13 @@ class App extends Component {
       message: messageInserted,
       date: dateSelected
     }
+
     if (!this.checkRepeatedDate() && !this.checkSelectedState() && !(dateSelected === "")){
-      console.log('date-selectec',dateSelected);
+    
       this.setState(prevState => ({
         savedStates: [...prevState.savedStates, newDay]
       }));
+      this.props.history.push("/");
     } else {
       alert(`You can't reapeat the date and choose one state, please.`);
     }
@@ -125,4 +128,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -12,7 +12,13 @@ class List extends Component {
             {
               savedStates.map((item, index) => {
                 return (
-                <li className="days-list-item" key={index} onClick={() => alert(`El ${item.date} has sido feliz porque: ${item.message}`)}>
+                <li className="days-list-item" key={index} onClick={() =>
+                  {
+                    if(item.state==="happy") {
+                      alert(`El ${item.date} has sido feliz porque: ${item.message}`);
+                    }
+                  }
+                }>
                   <div><i className={`icon ${item.state} fas ${item.state==="happy"?"fa-laugh-beam":"fa-frown"}`}></i></div>
                   <div>{item.date}</div>
                 </li>
