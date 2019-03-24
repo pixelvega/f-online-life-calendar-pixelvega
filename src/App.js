@@ -57,7 +57,7 @@ class App extends Component {
   }
 
   saveDay() {
-    let {stateSelected, messageInserted, dateSelected, savedStates} = this.state;
+    let {stateSelected, messageInserted, dateSelected} = this.state;
 
     if (stateSelected==="unhappy") {
       messageInserted = "";
@@ -73,7 +73,7 @@ class App extends Component {
         savedStates: [...prevState.savedStates, newState]
       }));
     } else {
-      alert('This date is already saved. Pick another date, please.')
+      alert(`You can't reapeat the date and choose one state, please.`);
     }
   }
 
