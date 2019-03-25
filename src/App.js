@@ -7,7 +7,6 @@ import List from './components/List';
 class App extends Component {
   constructor(props) {
     super(props);
-    const { match, location, history } = this.props;
 
     this.state = {
       dateSelected: new Date().toISOString().slice(0, 10),
@@ -24,6 +23,7 @@ class App extends Component {
     this.resetForm = this.resetForm.bind(this);
     this.checkRepeatedDate = this.checkRepeatedDate.bind(this);
     this.checkSelectedState = this.checkSelectedState.bind(this);
+    this.orderResultsByDate = this.orderResultsByDate.bind(this);
   }
 
   componentDidMount(){
@@ -33,6 +33,7 @@ class App extends Component {
   componentDidUpdate() {
     this.saveLocalStorage(this.state.savedStates, 'savedStates');
   }
+
 
   checkLocalStorage() {
     if(localStorage.getItem('savedStates') !== null) {
@@ -79,6 +80,22 @@ class App extends Component {
     this.props.history.push("/");
   }
 
+  orderResultsByDate(savedStates) {
+    const orderedStates = savedStates.sort(
+      function (a, b) {
+        if (a.date > b.date) {
+          return 1;
+        } else if (a.date < b.date) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    );
+
+    return orderedStates; 
+  }
+
   saveDay() {
     let {stateSelected, messageInserted, dateSelected} = this.state;
 
@@ -96,8 +113,7 @@ class App extends Component {
 
       this.setState(prevState => ({
         savedStates: [...prevState.savedStates, newDay]
-      }), 
-      );
+      }));
       this.props.history.push("/");
     } else {
 
@@ -119,7 +135,6 @@ class App extends Component {
 
     for (const date of savedStates) {
       if(this.state.dateSelected === date.date) {
-        console.log(this.state.dateSelected);
         return true;
       }
     }
@@ -144,7 +159,7 @@ class App extends Component {
           }/>
 
           <Route exact path="/" render={()=>
-            <List savedStates={savedStates} resetForm={this.resetForm} />
+            <List savedStates={this.orderResultsByDate(savedStates)} resetForm={this.resetForm} />
           }/>
         </Switch>
       </div>

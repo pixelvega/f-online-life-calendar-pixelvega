@@ -3,7 +3,7 @@ import Header from './Header';
 
 class List extends Component {
   render() {
-    const {savedStates, resetForm, showMessage} = this.props;
+    const {savedStates, resetForm} = this.props;
     if(savedStates.length>0) {
       return(
         <div className="list-wrapper">
