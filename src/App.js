@@ -26,6 +26,27 @@ class App extends Component {
     this.checkSelectedState = this.checkSelectedState.bind(this);
   }
 
+  componentDidMount(){
+    this.checkLocalStorage();
+  }
+  
+  componentDidUpdate() {
+    this.saveLocalStorage(this.state.savedStates, 'savedStates');
+  }
+
+  checkLocalStorage() {
+    if(localStorage.getItem('savedStates') !== null) {
+      const savedStates = JSON.parse(localStorage.getItem('savedStates'));
+      this.setState({
+        savedStates: savedStates
+      });
+    }
+  }
+
+  saveLocalStorage(value, key) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
   handleDate(e) {
     const date = e.currentTarget.value;
     this.setState({
@@ -72,13 +93,15 @@ class App extends Component {
     }
 
     if (!this.checkRepeatedDate() && !this.checkSelectedState() && !(dateSelected === "")){
-    
+
       this.setState(prevState => ({
         savedStates: [...prevState.savedStates, newDay]
-      }));
+      }), 
+      );
       this.props.history.push("/");
     } else {
-      alert(`You can't reapeat the date and choose one state, please.`);
+
+      alert(`Elige una fecha no guardada y un estado, por favor ;)`);
     }
   }
 

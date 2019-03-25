@@ -15,6 +15,7 @@ class List extends Component {
                   return (
                   <li className="days-list-item" key={index} onClick={() =>
                     {
+                      
                       if(item.state==="happy") {
                         alert(`El ${item.date} has sido feliz porque: ${item.message}`);
                       }
