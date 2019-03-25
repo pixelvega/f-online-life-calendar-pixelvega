@@ -32,12 +32,14 @@ class List extends Component {
       );
     } else {
       return(
-        <main className="main">
+        <div className="list-wrapper">
           <Header />
-          <div className="list">
-            No hay datos guardados
-          </div>
-        </main>
+          <main className="main">
+            <div className="list-wrapper">
+              No hay datos guardados
+            </div>
+          </main>
+        </div>
       );
     }
   }

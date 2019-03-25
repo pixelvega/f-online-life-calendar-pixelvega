@@ -20,6 +20,7 @@
 }
 .main {
   width: 320px;
+  margin-top: 10px;
 }
 .option-genre {
   display: flex;
@@ -78,6 +79,9 @@
 }
 /*Header Component*/
 .header {
+  width: 100%;
+}
+.header-text{
   text-align: center;
   font-size: 1.5em;
   color: white;
@@ -96,20 +100,19 @@
 
 /*List Component*/
 .days-list {
+  width: 100%;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   margin: 0px;
   padding: 0px;
+  margin-top: 14px;
 }
 .days-list-item {
   padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
 }
 .icon {
   font-size: 40px;
@@ -119,6 +122,7 @@
   color: orange;
   &:hover {
     color: #242424;
+    cursor: pointer;
   }
 }
 .unhappy {

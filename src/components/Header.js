@@ -4,9 +4,11 @@ import {Link} from 'react-router-dom';
 class Header extends Component {
   render() {
     return(
-      <Link to="/Edit/" className="link" onClick={this.props.resetForm}>
-        <div className="header">+</div>
-      </Link>
+      <div className="header">
+        <Link to="/Edit/" className="link" onClick={this.props.resetForm}>
+          <div className="header-text">+</div>
+        </Link>
+      </div>
     );
   }
 }
