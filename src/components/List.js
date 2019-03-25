@@ -17,7 +17,7 @@ class List extends Component {
                     {
                       
                       if(item.state==="happy") {
-                        alert(`El ${item.date} has sido feliz porque: ${item.message}`);
+                        alert(`El ${item.date} era feliz porque: ${item.message}`);
                       }
                     }
                   }>
