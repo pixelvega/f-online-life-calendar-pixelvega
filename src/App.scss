@@ -10,6 +10,7 @@
 /*Edit Component*/
 .title {
   margin-bottom: 10px;
+  padding-left: 10px;
 }
 #date {
   font-size: 16px;
@@ -23,16 +24,16 @@
 .option-genre {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 .state-group-inputs {
   display: flex;
+  margin-left: 10px;
 }
 .option-genre-label, .option-genre-input {
   margin: 0px;
   padding: 0px 10px;
-}
-.label-message {
-  
+  font-size: 1.5em;
 }
 .message {
   font-size: 16px;
@@ -46,7 +47,6 @@
 }
 .btn-group {
   margin-top: 30px;
-
 }
 .link {
   text-decoration: none;
@@ -62,7 +62,9 @@
   padding: 10px 6px;
   outline: none;
   &:hover {
-    background-color: #cccccc;
+    background-color: #242424;
+    color: white;
+    cursor: pointer;
   }
 }
 .save {
@@ -77,13 +79,15 @@
 /*Header Component*/
 .header {
   text-align: center;
-  font-size: 30px;
+  font-size: 1.5em;
   color: white;
   width: 100%;
   background-color: #00a2ff;
-  padding: 10px 6px;
+  padding: 4px 6px;
   &:hover {
-    background-color: #cccccc;
+    background-color: #242424;
+    color: white;
+    cursor: pointer;
   }
 }
 .header .link {
@@ -103,18 +107,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
-}
-.days-list-item .icon:hover {
-  color: grey;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .icon {
   font-size: 40px;
   margin-bottom: 10px;
 }
 .happy {
-  color: green;
+  color: orange;
+  &:hover {
+    color: #242424;
+  }
 }
 .unhappy {
-  color: red;
+  color: #a3a1a1;
 }

@@ -6,37 +6,38 @@ class List extends Component {
     const {savedStates, resetForm, showMessage} = this.props;
     if(savedStates.length>0) {
       return(
-        <div className="main">
+        <div className="list-wrapper">
           <Header resetForm={resetForm} />
-          <ul className="days-list">
-            {
-              savedStates.map((item, index) => {
-                return (
-                <li className="days-list-item" key={index} onClick={() =>
-                  {
-                    if(item.state==="happy") {
-                      alert(`El ${item.date} has sido feliz porque: ${item.message}`);
+          <main className="main">
+            <ul className="days-list">
+              {
+                savedStates.map((item, index) => {
+                  return (
+                  <li className="days-list-item" key={index} onClick={() =>
+                    {
+                      if(item.state==="happy") {
+                        alert(`El ${item.date} has sido feliz porque: ${item.message}`);
+                      }
                     }
-                  }
-                }>
-                  <div><i className={`icon ${item.state} fas ${item.state==="happy"?"fa-laugh-beam":"fa-frown"}`}></i></div>
-                  <div>{item.date}</div>
-                </li>
-                )
-              })
-            }
-          </ul>
-         
+                  }>
+                    <div><i className={`icon ${item.state} fas ${item.state==="happy"?"fa-laugh-beam":"fa-frown"}`}></i></div>
+                    <div>{item.date}</div>
+                  </li>
+                  )
+                })
+              }
+            </ul>
+          </main>
         </div>
       );
     } else {
       return(
-        <div className="main">
+        <main className="main">
           <Header />
-          <div className="List">
+          <div className="list">
             No hay datos guardados
           </div>
-        </div>
+        </main>
       );
     }
   }

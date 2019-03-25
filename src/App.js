@@ -55,6 +55,7 @@ class App extends Component {
       dateSelected: new Date().toISOString().slice(0, 10),
       stateSelected: ''
     });
+    this.props.history.push("/");
   }
 
   saveDay() {
