@@ -3,6 +3,7 @@ import './App.scss';
 import {Switch, Route, withRouter} from 'react-router-dom';
 import Edit from './components/Edit';
 import List from './components/List';
+import Detail from  './components/Detail';
 
 class App extends Component {
   constructor(props) {
@@ -30,9 +31,10 @@ class App extends Component {
     this.checkLocalStorage();
   }
   
-  componentDidUpdate() {
-    this.saveLocalStorage(this.state.savedStates, 'savedStates');
-  }
+  // componentDidUpdate() {
+  //   // this.saveLocalStorage(this.state.savedStates, 'savedStates');
+  //   console.log('UPDATE!!');
+  // }
 
 
   checkLocalStorage() {
@@ -82,7 +84,7 @@ class App extends Component {
 
   orderResultsByDate(savedStates) {
     const orderedStates = savedStates.sort(
-      function (a, b) {
+      function compare(a, b) {
         if (a.date > b.date) {
           return 1;
         } else if (a.date < b.date) {
@@ -110,10 +112,16 @@ class App extends Component {
     }
 
     if (!this.checkRepeatedDate() && !this.checkSelectedState() && !(dateSelected === "")){
-
-      this.setState(prevState => ({
-        savedStates: [...prevState.savedStates, newDay]
-      }));
+      this.setState((prevState)=>{
+        const nextState = [...prevState.savedStates, newDay];
+        this.saveLocalStorage(nextState, 'savedStates');
+        return {
+          savedStates: nextState
+        };
+      })
+      // this.setState((prevState) => ({
+      //   savedStates: [...prevState.savedStates, newDay]
+      // }));
       this.props.history.push("/");
     } else {
 
@@ -154,12 +162,16 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
+          <Route exact path="/" render={()=>
+            <List savedStates={this.orderResultsByDate(savedStates)} resetForm={this.resetForm} />
+          }/>
+
           <Route path="/Edit/" render={()=>
             <Edit handleDate={this.handleDate} handleState={this.handleState} handleMessage={this.handleMessage} stateSelected={stateSelected} dateSelected={dateSelected} discardData={this.discardData} saveDay={this.saveDay} />
           }/>
 
-          <Route exact path="/" render={()=>
-            <List savedStates={this.orderResultsByDate(savedStates)} resetForm={this.resetForm} />
+          <Route path="/Detail/:id" render={(renderProps)=>
+            <Detail id={renderProps.match.params.id}/>
           }/>
         </Switch>
       </div>
